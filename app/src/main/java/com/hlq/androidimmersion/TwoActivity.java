@@ -1,10 +1,15 @@
 package com.hlq.androidimmersion;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 
@@ -17,6 +22,9 @@ public class TwoActivity extends AppCompatActivity {
 
     private Toolbar mToolbar;
 
+    private View mNavView;
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +32,9 @@ public class TwoActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT &&
                 Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getWindow().setNavigationBarColor(Color.YELLOW);
         }
         setContentView(R.layout.activity_two);
 
@@ -38,6 +49,12 @@ public class TwoActivity extends AppCompatActivity {
                 mToolbar.getTop() + getStatusBarHeight(this),
                 mToolbar.getPaddingRight(),
                 mToolbar.getPaddingBottom());
+
+        // 设置底部导航栏
+        mNavView = findViewById(R.id.id_nav);
+        ViewGroup.LayoutParams navParams = mNavView.getLayoutParams();
+        navParams.height += getNavigationBarHeight(this);
+        mNavView.setLayoutParams(navParams);
     }
 
     /**
@@ -47,15 +64,40 @@ public class TwoActivity extends AppCompatActivity {
      * @return
      */
     private int getStatusBarHeight(Context context) {
-        int statuHeight = 0;
+        return getSystemComponentDimen(this, "status_bar_height");
+    }
+
+    /**
+     * 获取底部导航栏高度
+     *
+     * @param context
+     * @return
+     */
+    private int getNavigationBarHeight(Context context) {
+        return getSystemComponentDimen(this, "navigation_bar_height");
+    }
+
+    /**
+     * 反射拿到系统属性值
+     *
+     * @param context
+     * @param dimenName
+     * @return
+     */
+    public static int getSystemComponentDimen(Context context, String dimenName) {
+        int stateHeight = 0;
         // 反射R类
         try {
+            // 指定目标地址
             Class<?> clazz = Class.forName("com.android.internal.R$dimen");
+            // 实例化
             Object object = clazz.newInstance();
-            String heightStr = clazz.getField("status_bar_height").get(object).toString();
+            // 获取属性值
+            String heightStr = clazz.getField(dimenName).get(object).toString();
+            // 转换
             int height = Integer.parseInt(heightStr);
             // dp --- px
-            statuHeight = context.getResources().getDimensionPixelOffset(height);
+            stateHeight = context.getResources().getDimensionPixelOffset(height);
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
@@ -65,6 +107,11 @@ public class TwoActivity extends AppCompatActivity {
         } catch (NoSuchFieldException e) {
             e.printStackTrace();
         }
-        return statuHeight;
+        return stateHeight;
     }
+
+    public void goThree(View view) {
+        startActivity(new Intent(this, ThreeActivity.class));
+    }
+
 }

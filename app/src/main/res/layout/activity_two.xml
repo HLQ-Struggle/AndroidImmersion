@@ -4,9 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
     android:orientation="vertical"
     tools:context="com.hlq.androidimmersion.MainActivity">
 
+    <!-- android:layout_height="?attr/actionBarSize" -->
     <android.support.v7.widget.Toolbar
         android:id="@+id/id_toolbar"
         android:layout_width="match_parent"
@@ -16,7 +18,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFF">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -28,65 +32,16 @@
                 android:layout_height="wrap_content"
                 android:hint="请输入内容" />
 
-            <EditText
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="请输入内容" />
+                android:onClick="goThree"
+                android:text="btn" />
 
-            <EditText
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="请输入内容" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="123" />
+                android:text="btn" />
 
             <Button
                 android:layout_width="match_parent"
@@ -111,9 +66,30 @@
                 android:layout_height="wrap_content"
                 android:text="btn" />
 
-            <TextView
+            <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="btn" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="btn" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="btn" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="btn" />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="btn" />
 
             <Button
                 android:layout_width="match_parent"
@@ -121,15 +97,6 @@
                 android:text="btn" />
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="btn" />
-
-            <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="请输入内容" />
@@ -137,5 +104,17 @@
         </LinearLayout>
 
     </ScrollView>
+
+    <!--<View-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="48dp"-->
+    <!--android:layout_weight="0"-->
+    <!--android:background="?attr/colorPrimary" />-->
+    <View
+        android:id="@+id/id_nav"
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:layout_weight="0"
+        android:background="@color/colorAccent" />
 
 </LinearLayout>
